@@ -15,6 +15,13 @@ export default function App() {
       SetTask(null)
     }
 
+    // complete Tasks
+    const CompleteTask = (index) => {
+      let itemCopy = [...TeskItem];
+      itemCopy.splice(index, 1)
+      SetTaskItems(itemCopy)
+    }
+
   return (
     <View style={styles.container}>
       {/* today's tacks */}
@@ -24,9 +31,12 @@ export default function App() {
         <View style={styles.items}>
           {/* Task on on here */}
           {
-            TeskItem.map((itemData) => {
+            TeskItem.map((itemData, index) => {
               return (
-                <Task text={itemData}/>
+                <TouchableOpacity key={index} onPress={() => CompleteTask()}>
+                  <Task text={itemData}/>
+                </TouchableOpacity>
+
               )
             })
           }
